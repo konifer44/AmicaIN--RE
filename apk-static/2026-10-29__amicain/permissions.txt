@@ -1,0 +1,14 @@
+package: amica.com
+uses-permission: name='android.permission.LOCAL_MAC_ADDRESS'
+uses-permission: name='android.permission.READ_EXTERNAL_STORAGE'
+uses-permission: name='android.permission.WRITE_EXTERNAL_STORAGE'
+uses-permission: name='android.permission.INTERNET'
+uses-permission: name='android.permission.ACCESS_NETWORK_STATE'
+uses-permission: name='android.permission.ACCESS_WIFI_STATE'
+uses-permission: name='android.permission.ACCESS_FINE_LOCATION'
+uses-permission: name='android.permission.ACCESS_COARSE_LOCATION'
+uses-permission: name='android.permission.CHANGE_WIFI_STATE'
+uses-permission: name='android.permission.REQUEST_DELETE_PACKAGES'
+uses-permission: name='android.permission.DELETE_PACKAGES'
+permission: amica.com.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+uses-permission: name='amica.com.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION'

@@ -1,0 +1,15 @@
+<smart>
+  <obj>
+    <key>OBJ_HELP_PDF</key>
+    <name>HELP PDF</name>
+    <class_type>smart_pdf</class_type>
+    <parent_class>area</parent_class>
+    <executable>1</executable>	
+    <text_file>text.txt</text_file>
+    <hint_text_file>hint.txt</hint_text_file>
+    <image_file>image.png</image_file>
+    <to_execute>EXE:manual.pdf</to_execute>	
+    <load_type>1</load_type>
+    <create_type>1</create_type>
+  </obj>
+</smart>
