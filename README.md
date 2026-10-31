@@ -1,26 +1,47 @@
-> **Przygotowane przez Jan Koneiczny.**
+# AmicaIN: Reverse Engineering
 
-# Amica — SmartIN / AmicaIN / SMART2
+An **independent research project** exploring how the AmicaIN app communicates with an oven in the SmartIN / SMART2 ecosystem.
 
-## Dla osoby wręczającej projekt agentowi
+The goal is to collect knowledge and provide a **starting point for further independent research** into the device's communication and possible integrations. The material was prepared for educational and documentation purposes.
 
-Powiedz agentowi **dosłownie**:
+This is not a finished integration or a complete product. Some findings come from static analysis of the app and still need to be verified against a physical device. This project is independent and is not officially affiliated with the manufacturer.
 
-> Otwórz **folder główny projektu Amica** jako workspace. **Przeczytaj i wykonaj `AGENTS.md`** — najpierw sekcję ⚠️. **Nie** pisz podsumowań do Downloads/RTF. **Uruchom** jadx i zapisuj wyniki w `apk-static/` i `probes/`.
+## Why this project?
 
-**Jedyny punkt wejścia:** [`AGENTS.md`](AGENTS.md)
+This project is based on my experience with reverse engineering from before AI tools became part of the process, combined with what I've learned using AI agents today. I put it together to share that knowledge and give someone else a place to start their own research.
 
-| Plik / folder | Opis |
-|---------------|------|
-| [`AGENTS.md`](AGENTS.md) | **Start + zakazy + bootstrap APK** |
-| [`AmicaIN-SmartIN-ustalenia.pdf`](AmicaIN-SmartIN-ustalenia.pdf) | Raport (kontekst) |
-| `KOMUNIKACJA-PIEKARNIK.md` · `SMARTIN-SMART2-gleboko.md` | Reverse + ekosystem |
-| [`PROBE-LAN-RUNTIME.md`](PROBE-LAN-RUNTIME.md) | Piekarnik w Wi‑Fi |
-| [`docs/08-dekompilacja-checklist.md`](docs/08-dekompilacja-checklist.md) | Komendy A→Z |
-| `tools/` | `analyze.sh`, `probe-smartin-lan.py` |
-| `APK/downloaded/` | XAPK |
-| `apk-decompile-work/` | jadx (gitignore) |
-| `apk-static/` · `assets-extract/` | Ekstrakty |
-| `probes/` | **Tu lądują logi LAN — nie Downloads** |
+It also draws on knowledge gathered around [REA: Reverse Engineer Anything](https://github.com/morluto/rea). The repository is intended to support further investigation, including work with an AI agent.
 
-Scalenie PDF: po edycji części MD → `AmicaIN-SmartIN-ustalenia.md` → `npx md-to-pdf AmicaIN-SmartIN-ustalenia.md` (z katalogu głównego projektu).
+## Getting started
+
+1. Read the [research report](AmicaIN-SmartIN-ustalenia.md) for the scope and background.
+2. Explore the [oven communication notes](KOMUNIKACJA-PIEKARNIK.md) for initial findings about the protocol and communication paths.
+3. Before working with a physical device, read the [local network investigation notes](PROBE-LAN-RUNTIME.md).
+4. If you're handing the project to an AI agent, start with [AGENTS.md](AGENTS.md).
+
+## What's in this repository?
+
+| File or directory | Contents |
+|---|---|
+| [AGENTS.md](AGENTS.md) | Entry point and working instructions for an AI agent |
+| [AmicaIN-SmartIN-ustalenia.md](AmicaIN-SmartIN-ustalenia.md) | Full research report and background |
+| [AmicaIN-SmartIN-ustalenia.pdf](AmicaIN-SmartIN-ustalenia.pdf) | PDF version of the report |
+| [KOMUNIKACJA-PIEKARNIK.md](KOMUNIKACJA-PIEKARNIK.md) | Initial findings about device communication |
+| [SMARTIN-SMART2-gleboko.md](SMARTIN-SMART2-gleboko.md) | Analysis of the SmartIN / SMART2 ecosystem |
+| [PROBE-LAN-RUNTIME.md](PROBE-LAN-RUNTIME.md) | Starting point for investigating local network communication |
+| `tools/` | Scripts for analysis and communication experiments |
+| `apk-static/` and `assets-extract/` | Materials obtained during app analysis |
+
+## Working with an AI agent
+
+Open the project root as your workspace and point the agent to [AGENTS.md](AGENTS.md). It contains the context, constraints, and guidance for continuing the work.
+
+App analysis results are organized under `apk-static/`, while results from communication experiments belong in `probes/`.
+
+## Third-party materials
+
+Product names and other third-party materials belong to their respective owners. They are referenced in this project for the purpose of documenting and studying the system. Check the applicable licenses and terms before reusing or redistributing any materials.
+
+## Status
+
+This repository is a **starting point for further research**. Before building an integration based on these findings, verify the assumptions, app version, and behavior of your own device.
