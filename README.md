@@ -14,9 +14,9 @@ It also draws on knowledge gathered around [REA: Reverse Engineer Anything](http
 
 ## Getting started
 
-1. Read the [research report](AmicaIN-SmartIN-ustalenia.md) for the scope and background.
-2. Explore the [oven communication notes](KOMUNIKACJA-PIEKARNIK.md) for initial findings about the protocol and communication paths.
-3. Before working with a physical device, read the [local network investigation notes](PROBE-LAN-RUNTIME.md).
+1. Read the [research report](AmicaIN-SmartIN-Research-Report.md) for the scope and background.
+2. Explore the [oven communication notes](OVEN-COMMUNICATION.md) for initial findings about the protocol and communication paths.
+3. Before working with a physical device, read the [local network investigation notes](LAN-RUNTIME-INVESTIGATION.md).
 4. If you're handing the project to an AI agent, start with [AGENTS.md](AGENTS.md).
 
 ## What's in this repository?
@@ -24,11 +24,11 @@ It also draws on knowledge gathered around [REA: Reverse Engineer Anything](http
 | File or directory | Contents |
 |---|---|
 | [AGENTS.md](AGENTS.md) | Entry point and working instructions for an AI agent |
-| [AmicaIN-SmartIN-ustalenia.md](AmicaIN-SmartIN-ustalenia.md) | Full research report and background |
-| [AmicaIN-SmartIN-ustalenia.pdf](AmicaIN-SmartIN-ustalenia.pdf) | PDF version of the report |
-| [KOMUNIKACJA-PIEKARNIK.md](KOMUNIKACJA-PIEKARNIK.md) | Initial findings about device communication |
-| [SMARTIN-SMART2-gleboko.md](SMARTIN-SMART2-gleboko.md) | Analysis of the SmartIN / SMART2 ecosystem |
-| [PROBE-LAN-RUNTIME.md](PROBE-LAN-RUNTIME.md) | Starting point for investigating local network communication |
+| [AmicaIN-SmartIN-Research-Report.md](AmicaIN-SmartIN-Research-Report.md) | Full research report and background |
+| [AmicaIN-SmartIN-Research-Report.pdf](AmicaIN-SmartIN-Research-Report.pdf) | PDF version of the report |
+| [OVEN-COMMUNICATION.md](OVEN-COMMUNICATION.md) | Initial findings about device communication |
+| [SMARTIN-SMART2-DEEP-DIVE.md](SMARTIN-SMART2-DEEP-DIVE.md) | Analysis of the SmartIN / SMART2 ecosystem |
+| [LAN-RUNTIME-INVESTIGATION.md](LAN-RUNTIME-INVESTIGATION.md) | Starting point for investigating local network communication |
 | `tools/` | Scripts for analysis and communication experiments |
 | `apk-static/` and `assets-extract/` | Materials obtained during app analysis |
 

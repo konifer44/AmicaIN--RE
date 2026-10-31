@@ -1,45 +1,45 @@
-> **Przygotowane przez Jan Koneiczny.**
+> **Prepared by Jan Konieczny.**
 
-# AGENTS.md — AmicaIN / SmartIN / SMART2
+# AGENTS.md - AmicaIN / SmartIN / SMART2
 
-Ten projekt dotyczy aplikacji **AmicaIN** (`amica.com`) i piekarnika z platformą **SmartIN / SMART2**. Nie utożsamiaj jej z aplikacją Amica Home (Tuya). Zacznij od tego pliku i [README.md](README.md); dobieraj dalsze dokumenty do zadania.
+This project is for the **AmicaIN**(`amica.com`) application and the**SmartIN / SMART2** platform oven. Do not confuse it with the Amica Home (Tuya) application. Start with this file and [README.md](README.md); select further documents for the task.
 
-Wskazówki dla agenta w tym pliku mają pierwszeństwo przed starszymi instrukcjami w README i dokumentacji diagnostycznej.
+Agent instructions in this file take precedence over older instructions in the README and diagnostic documentation.
 
-## Praca dla osoby nietechnicznej
+## Job for a non-technical person
 
-- Użytkownik nie musi znać adresu IP, podsieci, portów, identyfikatora sesji ani zasad działania routera. **Samodzielnie zbieraj dostępne dane i rozwiązuj problemy.** Nie rozpoczynaj od listy pytań technicznych.
-- Gdy użytkownik chce połączyć się z piekarnikiem, potraktuj to jako zadanie do wykonania. Sprawdź istniejące wyniki, stan sieci komputera i możliwe sposoby wykrycia urządzenia; kontynuuj diagnostykę, dopóki możesz zrobić coś użytecznego.
-- Zadaj pytanie dopiero, gdy niezbędnej informacji nie da się rozsądnie ustalić samodzielnie lub potrzebne jest fizyczne działanie użytkownika. Wyjaśnij krótko, dlaczego jest ono konieczne, i podaj jedną prostą instrukcję krok po kroku. Nie proś o hasło Wi‑Fi, dane logowania ani identyfikator sesji, jeśli istnieje inna droga.
-- Pisz prostym językiem: powiedz, co udało się ustalić, co robisz dalej i jaki jest efekt. Terminy techniczne wyjaśniaj tylko wtedy, gdy pomagają użytkownikowi podjąć działanie. Nie przedstawiaj przypuszczenia jako potwierdzonego faktu.
-- Stosuj już przekazane informacje. Jeśli użytkownik potwierdził, że piekarnik działa w AmicaIN, nie każ mu ponownie parować urządzenia bez ustalonej przyczyny.
+- The user does not need to know the IP address, subnet, ports, session ID or how the router works. **Collect available data and solve problems yourself.** Don't start with a list of technical questions.
+- When a user wants to connect to the oven, treat it as a task to be completed. Check the existing results, the computer's network status and possible ways to detect the device; continue diagnostics while useful independent work remains.
+- Only ask a question when the necessary information cannot be reasonably determined on your own or physical action by the user is required. Briefly explain why it is necessary and provide one simple step-by-step instruction. Don't ask for your Wi-Fi password, login information, or session ID if there's another way.
+- Write in simple language: say what you have found, what you are doing next and what the effect is. Only explain technical terms if they help the user take action. Don't present an assumption as confirmed fact.
+- Use information already provided. If the user has confirmed that the oven works in AmicaIN, do not ask them to re-pair the device without an established reason.
 
-## Łączenie z piekarnikiem
+## Connecting to the oven
 
-1. Przeczytaj [PROBE-LAN-RUNTIME.md](PROBE-LAN-RUNTIME.md), [KOMUNIKACJA-PIEKARNIK.md](KOMUNIKACJA-PIEKARNIK.md) i istniejące wyniki w `probes/`. Traktuj ich opis protokołu jako hipotezy wymagające potwierdzenia na urządzeniu.
-2. Sam sprawdź aktywny interfejs, adres komputera i rzeczywistą maskę sieci. Użyj dostępnych lokalnych danych o urządzeniach i istniejących narzędzi, aby ustalić prawdopodobnego kandydata. Brak nazwy urządzenia lub otwartego portu nie dowodzi, że piekarnika nie ma w sieci; nie przypisuj adresu bez wiarygodnego potwierdzenia.
-3. W razie potrzeby wykorzystaj discovery opisane w projekcie. Sprawdź faktyczny adres rozgłoszeniowy: obecny skrypt `tools/probe-smartin-lan.py` zakłada `/24`, co może nie pasować do sieci użytkownika. Znany adres urządzenia pozwala wskazać cel bez tego założenia. Wybierz ograniczoną diagnostykę potrzebną do odnalezienia własnego piekarnika.
-4. Jeśli potrzebny jest identyfikator sesji, najpierw sprawdź dostępne w projekcie dane i inne możliwe sposoby nawiązania łączności. Nie zakładaj, że identyfikator zastępczy zapewni prawidłowe parowanie. Nie zapisuj sekretów w logach ani nie ujawniaj ich w odpowiedzi.
-5. Opieraj kolejne kroki na faktycznych wynikach. Samo działanie aplikacji na telefonie nie potwierdza, że komputer ma dostęp do piekarnika przez LAN. Udane znalezienie urządzenia nie oznacza jeszcze poprawnego sterowania.
-6. Zapisuj przydatne wyniki w `probes/{data}__lan-attempt/` oraz ustalenia w dokumentacji projektu, gdy zadanie obejmuje taką pracę. Wyjaśnij wyniki i konkretny punkt wznowienia. Gdy dostęp techniczny lub uprawnienia uniemożliwiają działanie, nazwij konkretną blokadę i zastosuj dostępne rozwiązanie zastępcze.
+1. Read [LAN-RUNTIME-INVESTIGATION.md](LAN-RUNTIME-INVESTIGATION.md), [OVEN-COMMUNICATION.md](OVEN-COMMUNICATION.md) and the existing results in `probes/`. Treat their description of the protocol as a hypothesis requiring confirmation on the device.
+2. Check the active interface, computer address and actual network mask yourself. Use available local device data and existing tools to determine the likely candidate. The absence of a device name or an open port does not prove that the oven is not on the network; do not assign an address without reliable confirmation.
+3. If necessary, use the discovery described in the project. Check the actual broadcast address: the current `tools/probe-smartin-lan.py` script assumes `/24`, which may not match your network. The known address of the device allows you to point to the target without this assumption. Select the limited diagnostics needed to find your oven.
+4. If you need a session ID, first check the data available in your project and other possible ways to connect. Don't assume that the placeholder ID will ensure proper pairing. Don't write secrets in logs or reveal them in a response.
+5. Base next steps on actual results. The mere operation of the application on the phone does not confirm that the computer has access to the oven via LAN. Successfully finding the device does not mean correct control.
+6. Record useful results in `probes/{date}__lan-attempt/` and findings in the project documentation when the task involves such work. Explain the results and the specific restart point. When technical access or permissions prevent action, name the specific blockage and implement an available workaround.
 
-Tylko własny sprzęt; bez fuzzingu relay i bez obcych firmware z forów. Nie wysyłaj poleceń zmieniających ustawienia, uruchamiających grzanie ani aktualizujących firmware bez wyraźnego zlecenia użytkownika.
+Only your own equipment; no relay fuzzing and no foreign firmware from forums. Do not send commands to change settings, start heating or update firmware without explicit instructions from the user.
 
-## Mapa projektu
+## Project map
 
-| Miejsce | Zawartość |
+|Place|Contents|
 |---------|-----------|
-| [README.md](README.md) | Przegląd projektu i plików |
-| [PROBE-LAN-RUNTIME.md](PROBE-LAN-RUNTIME.md) | Próba komunikacji w sieci lokalnej |
-| [KOMUNIKACJA-PIEKARNIK.md](KOMUNIKACJA-PIEKARNIK.md) | Ustalenia o komunikacji i protokołach |
-| [SMARTIN-SMART2-gleboko.md](SMARTIN-SMART2-gleboko.md) | Pogłębiona analiza platformy |
-| [AmicaIN-SmartIN-ustalenia.pdf](AmicaIN-SmartIN-ustalenia.pdf) | Raport z dotychczasowych ustaleń |
-| [docs/08-dekompilacja-checklist.md](docs/08-dekompilacja-checklist.md) | Wskazówki do analizy APK |
-| `APK/downloaded/` | Pobrany pakiet aplikacji |
-| `apk-decompile-work/` | Roboczy wynik dekompilacji |
-| `apk-static/` | Wyniki analizy statycznej APK |
-| `assets-extract/` | Wyodrębnione zasoby aplikacji |
-| `probes/` | Wyniki diagnostyki urządzenia |
-| `tools/` | Skrypty pomocnicze, w tym `probe-smartin-lan.py` |
+|[README.md](README.md)|Project and file overview|
+|[LAN-RUNTIME-INVESTIGATION.md](LAN-RUNTIME-INVESTIGATION.md)|Attempt to communicate in the local network|
+|[OVEN-COMMUNICATION.md](OVEN-COMMUNICATION.md)|Communication and protocol arrangements|
+|[SMARTIN-SMART2-DEEP-DIVE.md](SMARTIN-SMART2-DEEP-DIVE.md)|In-depth analysis of the platform|
+|[AmicaIN-SmartIN-Research-Report.pdf](AmicaIN-SmartIN-Research-Report.pdf)|Report on the findings so far|
+|[docs/08-decompilation-checklist.md](docs/08-decompilation-checklist.md)|APK analysis tips|
+| `APK/downloaded/` |Downloaded application package|
+| `apk-decompile-work/` |Working decompilation result|
+| `apk-static/` |APK static analysis results|
+| `assets-extract/` |Isolated application resources|
+| `probes/` |Device diagnostic results|
+| `tools/` |Support scripts including `probe-smartin-lan.py`|
 
-Analizę APK, zasobów i raportów wykonuj, gdy pomaga w konkretnym zadaniu. Dostępność narzędzi i istniejących artefaktów sprawdzaj przed przyjęciem założenia, że trzeba coś pobrać lub odtworzyć. Zapisuj rezultaty w odpowiednich katalogach projektu, a nie w osobnym dokumencie poza nim.
+Analyze APKs, resources and reports when it helps with a specific task. Check the availability of tools and existing artifacts before assuming something needs to be downloaded or recreated. Save results in the appropriate project directories, not in a separate document outside the project.

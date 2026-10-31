@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-# Przygotowane przez Jan Koneiczny.
+# Prepared by Jan Konieczny.
 """
-SMART2 / SmartIN — pierwsza próba komunikacji LAN (bez oficjalnej apki).
+SMART2 / SmartIN - initial LAN communication attempt (without the official app).
 
-Evidence: q3/a.java (UDP #SMT_AMC#), o3/h.java (obfuskacja seed 123), q3/c.java (ServerSocket).
+Evidence: q3/a.java (UDP #SMT_AMC#), o3/h.java (obfuscation seed 123), q3/c.java (ServerSocket).
 
-Użycie — patrz PROBE-LAN-RUNTIME.md (katalog główny projektu Amica).
+Usage: see LAN-RUNTIME-INVESTIGATION.md in the project root.
 """
 from __future__ import annotations
 
@@ -139,14 +139,14 @@ def udp_broadcast(
 
 def main() -> int:
     ap = argparse.ArgumentParser(description="SMART2 LAN probe (discovery + listen)")
-    ap.add_argument("--oven-ip", help="Znany IP piekarnika (opcjonalnie — bez tego tylko broadcast)")
-    ap.add_argument("--local-ip", help="IPv4 komputera w tej samej sieci co piekarnik")
-    ap.add_argument("--session-id", default="", help="ID sesji jak k3.a.t() — po sparowaniu AmicaIN lub z backupu")
-    ap.add_argument("--listen-port", type=int, default=7776, help="Port TCP na którym czekamy (jak apka)")
+    ap.add_argument("--oven-ip", help="Known oven IP (optional; otherwise broadcast only)")
+    ap.add_argument("--local-ip", help="Computer IPv4 address on the same network as the oven")
+    ap.add_argument("--session-id", default="", help="Session ID as k3.a.t(), from a paired AmicaIN session or backup")
+    ap.add_argument("--listen-port", type=int, default=7776, help="TCP port on which to listen (as used by the app)")
     ap.add_argument("--udp-port", type=int, default=7777)
-    ap.add_argument("--scan-only", action="store_true", help="Tylko skan portów na --oven-ip")
-    ap.add_argument("--wait", type=float, default=25.0, help="Sekundy nasłuchu TCP po UDP")
-    ap.add_argument("--repeat", type=int, default=3, help="Ile razy wysłać UDP")
+    ap.add_argument("--scan-only", action="store_true", help="Only scan ports at --oven-ip")
+    ap.add_argument("--wait", type=float, default=25.0, help="Seconds to listen for TCP after UDP")
+    ap.add_argument("--repeat", type=int, default=3, help="Number of UDP transmissions")
     args = ap.parse_args()
 
     local_ip = args.local_ip or pick_local_ipv4()
@@ -165,9 +165,9 @@ def main() -> int:
 
     if not args.session_id:
         print(
-            "UWAGA: brak --session-id. UDP #SMT_AMC# w apce wymaga k3.a.t() (po FORMALNE/LOGUJ lub sparowaniu).\n"
-            "  → Poproś właściciela o jednorazowe połączenie AmicaIN (tryb WI) albo backup id z telefonu.\n"
-            "  → Agent: szukaj w jadx k3/a.java pole G, q3/e.java, albo capture z działającej apki.\n",
+            "WARNING: --session-id is missing. The app requires k3.a.t() for UDP #SMT_AMC# (after FORMALNE/LOGUJ or pairing).\n"
+            "  → Ask the owner to connect once with AmicaIN (WI mode) or obtain an ID backup from the phone.\n"
+            "  → Agent: inspect jadx k3/a.java field G, q3/e.java, or a capture from the working app.\n",
             file=sys.stderr,
         )
         session = "PROBE0000000001"
@@ -204,13 +204,13 @@ def main() -> int:
 
     if not any("inbound_tcp" in x for x in log):
         print(
-            "\nBrak połączenia TCP od piekarnika. Typowe przyczyny:\n"
-            "  • piekarnik nie w trybie WI / nie sparowany z tym session-id\n"
-            "  • AP=0 / M=0 / S=0 w menu WiFi piekarnika\n"
-            "  • VLAN / izolacja klientów WiFi\n"
-            "  • to Amica Home (Tuya), nie SMART2 — inna apka\n"
-            "  • firewall blokuje inbound TCP na --listen-port\n"
-            "Agent: patrz PROBE-LAN-RUNTIME.md § pętla naprawcza.",
+            "\nNo TCP connection from the oven. Common causes:\n"
+            "  • oven not in WI mode / not paired with this session ID\n"
+            "  • AP=0 / M=0 / S=0 in the oven Wi-Fi menu\n"
+            "  • VLAN / Wi-Fi client isolation\n"
+            "  • this is Amica Home (Tuya), not SMART2 - a different app\n"
+            "  • firewall blocks inbound TCP on --listen-port\n"
+            "Agent: see LAN-RUNTIME-INVESTIGATION.md, troubleshooting loop.",
             file=sys.stderr,
         )
         return 2
